@@ -1,3 +1,20 @@
 #include "application.h"
-void displayInteger(String, int, int);
-void countButtonPress(int, int *);
+
+class IoT
+{
+    public:
+        IoT();
+        void displayInteger(String name, int value, int displayWaitTime);
+        void countButtonPress(int, int *);
+    
+    private:
+        // displayInteger
+        int displayElapsedTime;
+        int displayLastTime;
+        
+        // checkButtonPress
+        int buttonState;
+        int lastButtonState;
+        int lastDebounceTime;
+        const int debounceDelay = 50;
+};

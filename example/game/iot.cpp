@@ -1,11 +1,19 @@
 #include "iot.h"
 
-// display timing variables
-int displayElapsedTime = 0;
-int displayLastTime = 0;
+IoT::IoT()
+{
+    // displayInteger
+    displayElapsedTime = 0;
+    displayLastTime = 0;
+    
+    // checkButtonPress
+    buttonState = HIGH;
+    lastButtonState = HIGH;
+    lastDebounceTime = 0;
+}
 
 /* display the given integer every waitTime ms */
-void displayInteger(String name, int value, int displayWaitTime) {
+void IoT::displayInteger(String name, int value, int displayWaitTime) {
     int now = millis();
     displayElapsedTime += (now - displayLastTime);
     if (displayElapsedTime > displayWaitTime) {
@@ -16,14 +24,8 @@ void displayInteger(String name, int value, int displayWaitTime) {
     displayLastTime = now;
 }
 
-// debouncing
-int buttonState = HIGH;
-int lastButtonState = HIGH;
-int lastDebounceTime = 0;
-const int debounceDelay = 50;
-
 /* use debouncing to count button presses */
-void countButtonPress(int switchPin, int *count) {
+void IoT::countButtonPress(int switchPin, int *count) {
     // is the button HIGH (up) or LOW (down)
     int reading = digitalRead(switchPin);
     

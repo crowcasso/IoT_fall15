@@ -11,6 +11,8 @@ int count = 0;
 typedef enum {START, PLAY, FINISH} game_state_t;
 game_state_t gameState;
 
+IoT iot;
+
 /* setup the circuit */
 void setup() {
     pinMode(switchPin, INPUT_PULLUP);
@@ -26,7 +28,7 @@ void splashMessage() {
 
 void startState() {
     count = 0;
-    countButtonPress(switchPin, &count);
+    iot.countButtonPress(switchPin, &count);
     if (count >= 1) {
         Particle.publish("Game of Button", "Press the button many times.");
         gameState = PLAY;
@@ -34,8 +36,8 @@ void startState() {
 }
 
 void playState() {
-     countButtonPress(switchPin, &count);
-    //displayInteger("count", count, 2000);
+    iot.countButtonPress(switchPin, &count);
+    iot.displayInteger("count", count, 2000);
     if (count > 10) {
         gameState = FINISH;
     }
