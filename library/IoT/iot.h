@@ -4,7 +4,7 @@ class IoT
 {
     public:
         IoT();
-        void displayInteger(String name, int value, int displayWaitTime);
+        void displayInteger(String, int, int);
         void countButtonPress(int, int *);
     
     private:
