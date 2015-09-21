@@ -32,7 +32,10 @@ void IoT::displayInteger(String name, int value, int displayWaitTime) {
 }
 
 /* use debouncing to count button presses */
-void IoT::countButtonPress(int switchPin, int *count) {
+int IoT::countButtonPress(int switchPin, int *count) {
+    
+    int isPressed = 0;
+    
     // is the button HIGH (up) or LOW (down)
     int reading = digitalRead(switchPin);
     
@@ -52,11 +55,13 @@ void IoT::countButtonPress(int switchPin, int *count) {
             // only count when its LOW (down)
             if (buttonState == LOW) {
                 (*count)++;
+                isPressed = 1;
             }
         }
-        
     }
     
     // remember the current state
     lastButtonState = reading;
+    
+    return isPressed;
 }

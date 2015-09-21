@@ -5,7 +5,7 @@ class IoT
     public:
         IoT();
         void displayInteger(String, int, int);
-        void countButtonPress(int, int *);
+        int countButtonPress(int, int *);
     
     private:
         // displayInteger
