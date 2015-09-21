@@ -14,7 +14,7 @@ IoT::IoT()
     displayLastTime = 0;
     
     // checkButtonPress
-    buttonState = HIGH;
+    buttonState = HIGH;  // assumption
     lastButtonState = HIGH;
     lastDebounceTime = 0;
 }
@@ -38,7 +38,7 @@ void IoT::countButtonPress(int switchPin, int *count) {
     
     // is this a chance from last time we checked?
     if (reading != lastButtonState) {
-        lastDebounceTime = 0;
+        lastDebounceTime = millis();
     }
     
     // wait to check again debounceDelay ms later
@@ -54,6 +54,7 @@ void IoT::countButtonPress(int switchPin, int *count) {
                 (*count)++;
             }
         }
+        
     }
     
     // remember the current state

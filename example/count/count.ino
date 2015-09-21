@@ -47,7 +47,7 @@ void goodMethod() {
     
     // is this a chance from last time we checked?
     if (reading != lastButtonState) {
-        lastDebounceTime = 0;
+        lastDebounceTime = millis();
     }
     
     // wait to check again debounceDelay ms later
